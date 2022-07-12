@@ -20,6 +20,7 @@
 1. `make generate-dockerfile APP_NAME=hello_world`
 2. `make test`
 3. Build, and push the image to `ghcr.io`. The image will be tagged using the branchname and shorthash
+4. The pushed image can be dowloaded from [here](https://github.com/viallikavoo/hello-world/pkgs/container/hello-world)
 
 ### Flow
 1. The `template_generator.go` is the go program that will use the dockerfile template located at 
