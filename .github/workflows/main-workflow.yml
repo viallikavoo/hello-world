@@ -44,6 +44,6 @@ jobs:
         with:
           push: true
           tags: |
-           "${{ APP_NAME }}:${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }}"
+           "$APP_NAME:${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }}"
 
 
