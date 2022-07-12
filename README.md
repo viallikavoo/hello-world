@@ -11,7 +11,7 @@
 #### Commands
 
 `make clean` will clean the binaries generated </br>
-`make generate-dockerfile APP_NAME=hello_world` will print the generated dockerfile with a comment on top of the current timestamp, and generate a Dockerfile as well.</br>
+`make generate-dockerfile APP_NAME=hello_world` will print the generated dockerfile with a comment on top of the current timestamp, and generate a Dockerfile as well. `APP_NAME` </br>
 `make test` will build and run the docker image and test if it outputs "Hello World".</br>
 
 #### Github Workflow
@@ -22,4 +22,5 @@
 3. Build, and push the image to `ghcr.io`. The image will be tagged using the branchname and shorthash
 
 ### Flow
-1. The `template_generator.go` is the go program that will use the dockerfile template located at `https://raw.githubusercontent.com/viallikavoo/docker-templates/main/templates/go/Dockerfile.template` and generate a Dockerfile with the timestamp as a comment on the top.
+1. The `template_generator.go` is the go program that will use the dockerfile template located at 
+[link](https://raw.githubusercontent.com/viallikavoo/docker-templates/main/templates/go/Dockerfile.template) and generate a Dockerfile with the timestamp as a comment on the top.
