@@ -1,0 +1,49 @@
+name: Build & push images
+on:
+  push:
+    branches: [ main ]
+env:
+  REGISTRY: ghcr.io
+  APP_NAME: hello-world
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Declare some variables
+        id: vars
+        shell: bash
+        run: |
+          echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+          echo "##[set-output name=sha_short;]$(git rev-parse --short HEAD)"
+
+      - name: Generate Docker File
+        run: |
+          make generate-dockerfile APP_NAME=$APP_NAME
+
+      - name: Test Docker Container
+        run: |
+          make test
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}        
+
+      -
+        name: Build and push
+        uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
+        with:
+          push: true
+          tags: |
+           "${{ APP_NAME }}:${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }}"
+
+
