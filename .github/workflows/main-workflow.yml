@@ -46,6 +46,6 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-           "${{ env.APP_NAME }}:${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }}"
+           "${{ env.REGISTRY }}/viallikavoo/${{ env.APP_NAME }}:${{ steps.vars.outputs.branch }}-${{ steps.vars.outputs.sha_short }}"
 
 
