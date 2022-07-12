@@ -11,4 +11,4 @@ generate-dockerfile:
 
 test: 
 	docker build --no-cache -t $(APP_NAME) .
-	docker run $(APP_NAME) | grep "hello world"
+	docker run $(APP_NAME) | grep "Hello World"

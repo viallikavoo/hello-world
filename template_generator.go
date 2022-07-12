@@ -7,6 +7,8 @@ import (
 	"net/http"
 	"os"
 	"time"
+
+	"github.com/fatih/color"
 )
 
 func main() {
@@ -25,11 +27,19 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	log.Println(string(template))
 	now := time.Now() // current local time
 	err1 := ioutil.WriteFile("Dockerfile", []byte("# "+now.String()+"\n"+string(bytes.Replace(template, []byte("{APP_NAME}"), []byte(args), -1))), 0777)
 	if err1 != nil {
 		log.Fatal(err1)
 	}
+
+	result, err := ioutil.ReadFile("Dockerfile")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	yellow := color.New(color.FgYellow)
+	boldYellow := yellow.Add(color.Bold)
+	boldYellow.Println(string(result))
 
 }
