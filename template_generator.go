@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	const url = "https://raw.githubusercontent.com/viallikavoo/docker-templates/main/templates/go/Dockerfile"
+	const url = "https://raw.githubusercontent.com/viallikavoo/docker-templates/main/templates/go/Dockerfile.template"
 
 	if len(os.Args) < 2 {
 		log.Fatalf("Please provide app name as an argument to the binary. Usage: %s app_name", os.Args[0])
